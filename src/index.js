@@ -1,19 +1,35 @@
 import "./styles.css";
-import { heading, banner, paragraph } from "./page-load";
-
-console.log("Welcome to Resturant 42");
+import { home } from "./home";
+import { menu } from "./menu";
+import { bookings } from "./bookings";
+import { about } from "./about";
 
 var content = document.getElementById("content")
+content.appendChild(home)
+function clear_content() {
+    while(content.firstChild) content.removeChild(content.lastChild);
+    home_button.setAttribute("style","")
+    menu_button.setAttribute("style","")
+    bookings_button.setAttribute("style","")
+    about_button.setAttribute("style","")
+}
 
-var img = document.createElement("img");
-img.src = banner;
-img.width = window.innerWidth;
-content.appendChild(img);
+function load_page(page) {
+    clear_content()
+    content.appendChild(page)
+}
 
-var h1 = document.createElement("h1");
-h1.textContent = heading;
-content.appendChild(h1)
 
-var p = document.createElement("p");
-p.textContent = paragraph
-content.appendChild(p)
+var home_button = document.getElementById("home")
+home_button.setAttribute("style","background-color:grey;color: white;");
+home_button.addEventListener("click", () => { load_page(home); home_button.setAttribute("style","background-color:grey;color: white;");})
+var menu_button = document.getElementById("menu")
+menu_button.addEventListener("click", () => { load_page(menu); menu_button.setAttribute("style","background-color:grey;color: white;");})
+var bookings_button = document.getElementById("bookings")
+bookings_button.addEventListener("click", () => { load_page(bookings); bookings_button.setAttribute("style","background-color:grey;color: white;");})
+var about_button = document.getElementById("about")
+about_button.addEventListener("click", () => { load_page(about); about_button.setAttribute("style","background-color:grey;color: white;");})
+
+
+
+content.appendChild(home)
